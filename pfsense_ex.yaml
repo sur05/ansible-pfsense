@@ -1,16 +1,13 @@
-- hosts: 
-  pfsense:
-    ansible_ssh_host: 10.18.81.36 
-    ansible_python_interpreter: /usr/local/bin/python2.7
-    tasks:
-    - name: "Add Internal DNS out rule"
-      pfsense_rule:
-        name: 'Allow Internal DNS traffic out'
-        action: pass
-        interface: lan
-        ipprotocol: inet
-        protocol: udp
-        source: 1.2.3.4
-        destination: any:53
-#       after: 'Allow proxies out'
-        state: present
+- hosts: pfsense
+  tasks:
+  - name: "Add Internal DNS out rule"
+    pfsense_rule:
+      name: 'Allow Internal DNS traffic out'
+      action: pass
+      interface: lan
+      ipprotocol: inet
+      protocol: udp
+      source: 1.2.3.4
+      destination: any:53
+#      after: 'Allow proxies out'
+      state: present
