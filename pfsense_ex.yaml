@@ -1,22 +1,7 @@
 - hosts: pfsense
   tasks:
-  - debug: var=miq_provision_id
-  - debug: var=miq_provision_request_id
   - name: "Add Internal DNS out rule"
     pfsense_rule:
-      name: 'Allow Internal DNS traffic out'
-      url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
-      method: GET
-      body_format: json
-      body:
-        action: edit
-        resource:
-          options:
-            addr_mode: ["static", "Static"]
-            ip_addr: "{{ ip_addr }}"
-            subnet_mask: "{{ netmask }}"
-            gateway: "{{ gateway }}"
-      validate_certs: no
       action: pass
       interface: lan
       ipprotocol: inet
