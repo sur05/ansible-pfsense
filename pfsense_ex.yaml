@@ -6,7 +6,7 @@
     pfsense_rule:
       name: 'Allow Internal DNS traffic out'
       url: "{{ manageiq.api_url }}/api/provision_requests/{{ miq_provision_request_id }}/request_tasks/{{ miq_provision_id }}"
-      method: POST
+      method: GET
       body_format: json
       body:
         action: edit
